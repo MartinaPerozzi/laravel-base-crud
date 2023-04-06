@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Song;
+// use App\Models\Song;
 
-class PageController extends Controller
-{
-    public function index()
-    {
+// class PageController extends Controller
+// {
+//     public function index()
+//     {
 
-        $songs = Song::all();
+//         $songs = Song::all();
 
-        return view('songs.list', compact('songs'));
-    }
-}
+//         return view('songs.list', compact('songs'));
+//     }
+// }

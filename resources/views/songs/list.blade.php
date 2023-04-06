@@ -13,6 +13,8 @@
                             <span class="card-text">{{ $song->author }}</span>
                             <span>{{ $song->editor }}</span>
                             <span>{{ $song->length }}</span>
+                            <br>
+                            <a class="text-black" href="{{ route('songs.show', $song) }}"> Dettaglio </a>
                         </div>
                         <div class="img-container">
                             <img src="{{ $song->poster }}" alt="Poster">
