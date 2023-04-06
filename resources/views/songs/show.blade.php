@@ -1,6 +1,6 @@
 @include('partials.head')
 
-<div class="container">
+<div class="container mt-4">
     <strong>Title: </strong> {{ $song->title }} <br />
     <strong>Album:</strong> {{ $song->album }} <br />
     <strong>Author: </strong> {{ $song->author }} <br />

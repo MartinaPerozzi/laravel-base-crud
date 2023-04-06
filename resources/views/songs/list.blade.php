@@ -1,7 +1,7 @@
 @include('partials.head')
 
 @extends('layouts.app')
-@section('page_name', 'SONGS')
+@section('page_name', 'SONG BACKOFFICE')
 
 
 @section('card_content')
@@ -16,6 +16,7 @@
                             <h6 class="card-subtitle mb-2 text-muted">{{ $song->album }}</h6>
                             <span class="card-text">{{ $song->author }}</span>
                             <span>{{ $song->editor }}</span>
+                            <br>
                             <span>{{ $song->length }}</span>
                         </div>
                         <div class="buttons">
