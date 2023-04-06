@@ -17,7 +17,9 @@ class SongController extends Controller
      */
     public function index()
     {
-        $songs = Song::all();
+        // $songs = Song::all();
+        // $songs = Song::all(); <-- senza pagination
+        $songs = Song::paginate(20);
 
         return view('songs.list', compact('songs'));
     }

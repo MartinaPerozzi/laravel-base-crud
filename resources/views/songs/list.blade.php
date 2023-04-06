@@ -70,4 +70,7 @@
             </div>
         </div>
     @endforeach
+    <div class="mt-3 mb-5">
+        {{ $songs->links('pagination::bootstrap-5') }}
+    </div>
 @endsection
