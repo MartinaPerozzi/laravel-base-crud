@@ -42,11 +42,11 @@ class SongSeeder extends Seeder
 
             $song = new Song;
 
-            $song->title = $faker->word();
-            $song->album = $faker->word();
+            $song->title = $faker->streetName();
+            $song->album = $faker->streetName();
             $song->author = $faker->firstName();
             $song->editor = $faker->company();
-            $song->length = $faker->numberBetween(30, 2000);
+            $song->length = $faker->randomFloat(2, 1, 50);
             $song->poster = "https://picsum.photos/200/200";
 
             $song->save();
