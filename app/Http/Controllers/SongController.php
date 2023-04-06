@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Song;
 
+// VALIDATE
+use Illuminate\Support\Facades\Validator;
+
 class SongController extends Controller
 {
     /**
@@ -37,7 +40,7 @@ class SongController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data = $this->validation($request->all());
         $song = new Song;
         $song->fill($data);
         $song->save();
@@ -75,7 +78,7 @@ class SongController extends Controller
      */
     public function update(Request $request, Song $song)
     {
-        $data = $request->all();
+        $data = $this->validation($request->all());
         $song->update($data);
         return redirect()->route('songs.show', $song);
     }
@@ -90,5 +93,44 @@ class SongController extends Controller
     {
         $song->delete();
         return redirect()->route('songs.index');
+    }
+
+
+
+    private function validation($data)
+    {
+        $validator = Validator::make(
+            $data,
+            [
+                'title' => 'required|string|max:80',
+                'album' => 'string|max:60',
+                "author" => "string|max:50",
+                "editor" => "string|max:50",
+                "length" => "required|decimal:2,4",
+                "img" => "nullable|string",
+            ],
+            [
+                'title.required' => 'Il titolo è obbligatorio',
+                'title.string' => 'Il titolo deve essere una stringa',
+                'title.max' => 'Il nome deve avere un massimo di 80 caratteri',
+
+                'album.max' => 'Il nome deve avere un massimo di 80 caratteri',
+                'album.string' => 'L\'album deve essere una stringa',
+
+                'author.max' => 'Il nome deve avere un massimo di 80 caratteri',
+                'author.string' => 'L\'autore deve essere una stringa',
+
+
+                'editor.max' => 'Il nome deve avere un massimo di 50 caratteri',
+                'editor.string' => 'L\'editor deve essere una stringa',
+
+
+                'length.decimal' => 'La length deve essere un numero',
+                'length.required' => 'La length è obbligatoria',
+
+                'img.string' => 'L\'immagine deve essere una stringa',
+            ]
+        )->validate();
+        return $validator;
     }
 }
