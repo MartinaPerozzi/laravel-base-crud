@@ -1,7 +1,9 @@
 @extends('layouts.app')
 @section('page_name', 'SONGS')
 
+
 @section('card_content')
+    <a href="{{ route('songs.create') }}" role="button" class="btn btn-primary mb-4"> Add Song</a>
     <div class="row row-cols-4">
         @forelse ($songs as $song)
             <div class="col">
