@@ -1,3 +1,5 @@
+@include('partials.head')
+
 @extends('layouts.app')
 @section('page_name', 'SONGS')
 
@@ -15,8 +17,15 @@
                             <span class="card-text">{{ $song->author }}</span>
                             <span>{{ $song->editor }}</span>
                             <span>{{ $song->length }}</span>
-                            <br>
-                            <a class="text-black" href="{{ route('songs.show', $song) }}"> Dettaglio </a>
+                        </div>
+                        <div class="buttons">
+                            <a class="me-1 mt-1 mb-1 btn btn-primary" href="{{ route('songs.show', $song) }}"> Dettaglio
+                            </a>
+                            <a class="btn btn-primary" href="{{ route('songs.edit', $song) }}">Modifica</a>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#delete-modal-{{ $song->id }}">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
                         </div>
                         <div class="img-container">
                             <img src="{{ $song->poster }}" alt="Poster">
@@ -28,4 +37,35 @@
             <h3>No movies found</h3>
         @endforelse
     </div>
+
+
+    @foreach ($songs as $song)
+        <!-- Modal -->
+        <div class="modal fade" id="delete-modal-{{ $song->id }}" tabindex="-1"
+            aria-labelledby="delete-modal-{{ $song->id }}-label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="delete-modal-{{ $song->id }}-label">Conferma eliminazione</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                        Sei sicuro di voler eliminare la canzone <strong>{{ $song->title }}</strong> con ID
+                        <strong> {{ $song->id }}</strong>? <br>
+                        L'operazione non è reversibile!
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+
+                        <form action="{{ route('songs.destroy', $song) }}" method="POST" class="">
+                            @method('DELETE')
+                            @csrf
+
+                            <button type="submit" class="btn btn-danger">Elimina</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 @endsection

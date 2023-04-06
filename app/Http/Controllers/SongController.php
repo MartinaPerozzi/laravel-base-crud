@@ -37,7 +37,11 @@ class SongController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $song = new Song;
+        $song->fill($data);
+        $song->save();
+        return redirect()->route('songs.show', $song);
     }
 
     /**
@@ -57,9 +61,9 @@ class SongController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Song $song)
     {
-        //
+        return view('songs.edit', compact('song'));
     }
 
     /**
@@ -69,9 +73,11 @@ class SongController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Song $song)
     {
-        //
+        $data = $request->all();
+        $song->update($data);
+        return redirect()->route('songs.show', $song);
     }
 
     /**
@@ -80,8 +86,9 @@ class SongController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Song $song)
     {
-        //
+        $song->delete();
+        return redirect()->route('songs.index');
     }
 }
