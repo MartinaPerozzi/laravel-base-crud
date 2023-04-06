@@ -33,7 +33,7 @@
 
         <label for="author" class="form-label">Author</label>
         <input type="text" class="form-control @error('author') is-invalid @enderror" id="author" name="author"
-            value="{{ old('name') }}" />
+            value="{{ old('author') }}" />
         @error('author')
             <div class="invalid-feedback">
                 {{ $message }}
