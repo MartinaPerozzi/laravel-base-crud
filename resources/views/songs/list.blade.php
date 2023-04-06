@@ -36,7 +36,7 @@
                 </div>
             </div>
         @empty
-            <h3>No movies found</h3>
+            <h3>No Songs found</h3>
         @endforelse
     </div>
 
