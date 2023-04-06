@@ -15,12 +15,13 @@
                             <h5 class="card-title">{{ $song->title }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ $song->album }}</h6>
                             <span class="card-text">{{ $song->author }}</span>
+                            <br>
                             <span>{{ $song->editor }}</span>
                             <br>
                             <span>{{ $song->length }}</span>
                         </div>
-                        <div class="buttons">
-                            <a class="me-1 mt-1 mb-1 btn btn-primary" href="{{ route('songs.show', $song) }}"> Dettaglio
+                        <div class="buttons mt-3 mb-1">
+                            <a class="me-1 btn btn-primary" href="{{ route('songs.show', $song) }}"> Dettaglio
                             </a>
                             <a class="btn btn-primary" href="{{ route('songs.edit', $song) }}">Modifica</a>
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
